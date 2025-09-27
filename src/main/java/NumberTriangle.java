@@ -88,8 +88,19 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        // TODO implement this method
-        return -1;
+        NumberTriangle curr = this;
+        if (path == null || path.isEmpty()) {
+            return curr.root;
+        }
+        for (int i = 0; i < path.length(); i++) {
+            char ch = path.charAt(i);
+            if (ch == 'l') {
+                curr = curr.left;
+            } else if (ch == 'r') {
+                curr = curr.right;
+            }
+        }
+        return curr.root;
     }
 
     /** Read in the NumberTriangle structure from a file.
@@ -113,7 +124,6 @@ public class NumberTriangle {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
 
-        // TODO define any variables that you want to use to store things
         NumberTriangle[] prevRow = null;
 
         // will need to return the top of the NumberTriangle,
